@@ -141,23 +141,19 @@ while playing:
     
         walls,boxes,goals = build_map(game_map)
 
-        def print_walls(canvas,objets): 
-            for i in objets:
+        def print_all(canvas,object1,object2,object3): 
+            for i in object1:
                 x = i.x   
                 y = i.y   
-                canvas.blit(wall,(x,y)) 
-        
-        def print_boxes(canvas,objets): 
-            for i in objets:
+                canvas.blit(wall,(x,y))  
+            for i in object2:
                 x = i.x   
                 y = i.y  
-                canvas.blit(box,(x,y))  
-
-        def print_goals(canvas,objets):
-            for i in objets:
+                canvas.blit(goal,(x,y))  
+            for i in object3:
                 x = i.x
                 y = i.y
-                canvas.blit(goal,(x,y))
+                canvas.blit(box,(x,y))
      
         player = pygame.Rect(605,455,40,40) 
 
@@ -242,10 +238,7 @@ while playing:
             screen.blit(background,(0,0))
             
             draw_map(screen,walls,boxes,goals) 
-            print_walls(screen,walls)
-            print_goals(screen,goals)
-            print_boxes(screen,boxes)
-            
+            print_all(screen,walls,goals,boxes)
     
             fps += 1 
             if fps >=21:
@@ -299,7 +292,7 @@ while playing:
             pygame.display.update()
             clock.tick(30)
 
-        while shit:
+        while restart:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -362,7 +355,7 @@ while playing:
             
             y1 = 80
             for i in message_win1:
-                text = font2.render(i, True, WHITE)
+                text = font2.render(i, False, WHITE)
                 screen.blit(text, (150,y1))
                 y1 += 80
                 
@@ -375,7 +368,7 @@ while playing:
             
             y2 = 80
             for i in message_win2:
-                text = font1.render(i, True, WHITE)
+                text = font1.render(i, False, WHITE)
                 screen.blit(text, (150,y2+100))
                 y2 += 80
             pygame.display.update()
